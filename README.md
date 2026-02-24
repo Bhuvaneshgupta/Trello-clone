@@ -60,27 +60,20 @@ cd FE_MILESTONE
 npm install
 ```
 
-3. **Setup Firebase Configuration**
-   Create a `src/firebase/config.js` file with your Firebase credentials:
+3. **Setup Environment Variables**
+   Create a `.env` file in the project root with your Firebase credentials:
 
-```javascript
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-};
-
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+```bash
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
+
+See `.env.example` for reference.
 
 4. **Run the development server**
 
@@ -206,6 +199,42 @@ boards/
 
 Feel free to submit issues and enhancement requests!
 
+## � Deployment
+
+### Deploying to Vercel
+
+1. **Push your code to GitHub**
+
+```bash
+git add .
+git commit -m "Deploy to Vercel"
+git push origin main
+```
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up/Login with GitHub
+   - Click "New Project"
+   - Select your repository
+   - Click "Import"
+
+3. **Configure Environment Variables**
+   - In Vercel dashboard, go to Settings → Environment Variables
+   - Add all Firebase configuration variables:
+     - `VITE_FIREBASE_API_KEY`
+     - `VITE_FIREBASE_AUTH_DOMAIN`
+     - `VITE_FIREBASE_PROJECT_ID`
+     - `VITE_FIREBASE_STORAGE_BUCKET`
+     - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+     - `VITE_FIREBASE_APP_ID`
+     - `VITE_FIREBASE_MEASUREMENT_ID`
+
+4. **Deploy**
+   - Click "Deploy"
+   - Vercel will automatically build and deploy your app
+
+**Note**: The `vercel.json` configuration file is included to handle client-side routing correctly on Vercel. All requests are rewritten to `index.html` so React Router can handle the routing.
+
 ## 📝 License
 
 This project is open source and available under the MIT License.
@@ -224,6 +253,7 @@ For issues or questions:
 - [Tailwind CSS Documentation](https://tailwindcss.com)
 - [Firebase Documentation](https://firebase.google.com/docs)
 - [dnd-kit Documentation](https://docs.dndkit.com)
+- [Vercel Documentation](https://vercel.com/docs)
 
 ---
 
